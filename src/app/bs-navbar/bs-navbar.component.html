@@ -11,7 +11,7 @@
         <a class="nav-link" routerLink="/">Home</a>
       </li>
       <li ngbDropdown class="nav-item dropdown">
-        <a ngbDropdownToggle class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Men</a>
+        <a ngbDropdownToggle class="nav-link dropdown-toggle" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Men</a>
         <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="dropdown01">
           <a class="dropdown-item" href="#">Action</a>
           <a class="dropdown-item" href="#">Another action</a>
@@ -19,7 +19,7 @@
         </div>
       </li>
       <li ngbDropdown class="nav-item dropdown">
-        <a ngbDropdownToggle class="nav-link dropdown-toggle" href="#" id="dropdown02" data-toggle="dropdown"
+        <a ngbDropdownToggle class="nav-link dropdown-toggle" id="dropdown02" data-toggle="dropdown"
           aria-haspopup="true" aria-expanded="false">Women</a>
         <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="dropdown02">
           <a class="dropdown-item" href="#">Action</a>
@@ -28,7 +28,7 @@
         </div>
       </li>
       <li ngbDropdown class="nav-item dropdown">
-        <a ngbDropdownToggle class="nav-link dropdown-toggle" href="#" id="dropdown03" data-toggle="dropdown"
+        <a ngbDropdownToggle class="nav-link dropdown-toggle" id="dropdown03" data-toggle="dropdown"
           aria-haspopup="true" aria-expanded="false">Sales</a>
         <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="dropdown03">
           <a class="dropdown-item" href="#">Action</a>
@@ -39,6 +39,15 @@
 
       <li class="nav-item">
         <a class="nav-link" routerLink="/shopping-cart">ShoppingCart</a>
+      </li>
+
+      <li ngbDropdown class="nav-item dropdown">
+        <a ngbDropdownToggle class="nav-link dropdown-toggle" id="dropdown03" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false">Username</a>
+        <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="dropdown03">
+          <a class="dropdown-item" routerLink="admin/products">Manage Products</a>
+          <a class="dropdown-item">Log Out</a>
+        </div>
       </li>
     </ul>
   </div>

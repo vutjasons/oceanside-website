@@ -13,6 +13,9 @@ import { OrderCompleteComponent } from './order-complete/order-complete.componen
 import { OrderHistoryComponent } from './order-history/order-history.component';
 import { AdminItemCatalogComponent } from './admin/admin-item-catalog/admin-item-catalog.component';
 import { LoginComponent } from './login/login.component';
+import { BsCarouselComponent } from './bs-carousel/bs-carousel.component';
+import { OceansideHeaderComponent } from './oceanside-header/oceanside-header.component';
+import { PopularProductsComponent } from './popular-products/popular-products.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +28,10 @@ import { LoginComponent } from './login/login.component';
     OrderCompleteComponent,
     OrderHistoryComponent,
     AdminItemCatalogComponent,
-    LoginComponent
+    LoginComponent,
+    BsCarouselComponent,
+    OceansideHeaderComponent,
+    PopularProductsComponent,
   ],
   imports: [
     BrowserModule,
