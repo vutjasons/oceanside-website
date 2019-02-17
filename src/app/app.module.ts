@@ -2,6 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { HttpClientModule } from '@angular/common/http';
+import { ItemsService } from './items.service';
 
 import { AppComponent } from './app.component';
 import { BsNavbarComponent } from './bs-navbar/bs-navbar.component';
@@ -35,7 +37,8 @@ import { PopularProductsComponent } from './popular-products/popular-products.co
   ],
   imports: [
     BrowserModule,
-    NgbModule.forRoot(),
+    NgbModule,
+    HttpClientModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent},
       { path: 'products', component: ItemCatalogComponent },
