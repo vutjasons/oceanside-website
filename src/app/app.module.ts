@@ -2,8 +2,14 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ItemsService } from './items.service';
+import { MatCardModule } from '@angular/material/card';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatInputModule, MatButtonModule } from '@angular/material';
+import { MatToolbarModule, MatExpansionModule, MatPaginatorModule } from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { BsNavbarComponent } from './bs-navbar/bs-navbar.component';
@@ -18,6 +24,9 @@ import { LoginComponent } from './login/login.component';
 import { BsCarouselComponent } from './bs-carousel/bs-carousel.component';
 import { OceansideHeaderComponent } from './oceanside-header/oceanside-header.component';
 import { PopularProductsComponent } from './popular-products/popular-products.component';
+import { SignupComponent } from './signup/signup.component';
+import { AuthInterceptor } from './auth-interceptor';
+import { MenProductsComponent } from './men-products/men-products.component';
 
 @NgModule({
   declarations: [
@@ -34,11 +43,23 @@ import { PopularProductsComponent } from './popular-products/popular-products.co
     BsCarouselComponent,
     OceansideHeaderComponent,
     PopularProductsComponent,
+    SignupComponent,
+    MenProductsComponent,
   ],
   imports: [
     BrowserModule,
     NgbModule,
     HttpClientModule,
+    ReactiveFormsModule,
+    FormsModule,
+    MatToolbarModule,
+    MatInputModule,
+    MatCardModule,
+    MatButtonModule,
+    MatExpansionModule,
+    MatProgressSpinnerModule,
+    BrowserAnimationsModule,
+    MatPaginatorModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent},
       { path: 'products', component: ItemCatalogComponent },
@@ -46,10 +67,12 @@ import { PopularProductsComponent } from './popular-products/popular-products.co
       { path: 'check-out', component: CheckOutComponent },
       { path: 'order-complete', component: OrderCompleteComponent },
       { path: 'login', component: LoginComponent },
+      { path: 'signup', component: SignupComponent },
       { path: 'admin/products', component: AdminItemCatalogComponent },
+      { path: 'men-products', component: MenProductsComponent },
     ])
   ],
-  providers: [],
+  providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

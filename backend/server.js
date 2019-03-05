@@ -7,6 +7,7 @@ const express = require('express'),
 
 
     const itemsRoute = require('./routes/items.route');
+    const userRoutes = require("./routes/user");
     mongoose.Promise = global.Promise;
     mongoose.connect(config.DB, {useNewUrlParser: true}).then( ()=> {console.log('Database is connected')}, err => {console.log('Can not connect to database' + err)}
     );
@@ -15,6 +16,8 @@ const express = require('express'),
     app.use(bodyParser.json());
     app.use(cors());
     app.use('/', itemsRoute);
+    app.use('/api/user', userRoutes);
+
     const port = process.env.PORT || 4000;
 
     const server = app.listen(port, function () {

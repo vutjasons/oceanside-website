@@ -2,22 +2,24 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { AuthService } from '../auth.service';
 
+
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  selector: 'app-signup',
+  templateUrl: './signup.component.html',
+  styleUrls: ['./signup.component.css']
 })
-export class LoginComponent implements OnInit {
+
+export class SignupComponent implements OnInit {
 
   isLoading = false;
 
   constructor(public authService: AuthService) { }
 
-  onLogin(form: NgForm) {
+  onSignup(form: NgForm) {
     if (form.invalid) {
       return;
     }
-    this.authService.login(form.value.fname, form.value.lname, form.value.email, form.value.password);
+    this.authService.createUser(form.value.fname, form.value.lname, form.value.email, form.value.password);
   }
 
   ngOnInit() {
