@@ -12,22 +12,31 @@ import { Router } from '@angular/router';
 export class BsNavbarComponent implements OnInit, OnDestroy {
 
   userIsAuthenticated = false;
+  user: AuthData;
+
   private authListenerSubs: Subscription;
-
-
+  private userListenerSubs: Subscription;
 
   constructor(private authService: AuthService, public router: Router) {}
 
 
   ngOnInit() {
-    this.userIsAuthenticated = this.authService.getIsAuth();
     this.authListenerSubs = this.authService
       .getAuthStatusListener()
       .subscribe(isAuthenticated => {
         this.userIsAuthenticated = isAuthenticated;
       });
+
+    this.userListenerSubs = this.authService.getAuthUserListener().subscribe((user: AuthData) => {
+      this.user = user;
+    });
+
+    console.log(this.user);
   }
 
+  onUser(userEmail: string) {
+    this.router.navigate(['profile/edit', userEmail]);
+  }
 
   onLogout() {
     this.authService.logout();

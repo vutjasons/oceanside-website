@@ -33,7 +33,10 @@ import { WsweaterComponent } from './items/women-products/wsweater/wsweater.comp
 import { WpantsComponent } from './items/women-products/wpants/wpants.component';
 import { ItemviewComponent } from './items/itemview/itemview.component';
 import { ItemdisplayComponent } from './items/itemdisplay/itemdisplay.component';
-import { AuthGuard } from './auth.guard';
+import { EditProfileComponent } from './edit-profile/edit-profile.component';
+import { SalesComponent } from './items/sales/sales.component';
+import { ProfileComponent } from './profile/profile.component';
+// import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -59,6 +62,9 @@ import { AuthGuard } from './auth.guard';
     WpantsComponent,
     ItemviewComponent,
     ItemdisplayComponent,
+    EditProfileComponent,
+    SalesComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -90,10 +96,13 @@ import { AuthGuard } from './auth.guard';
       { path: 'women/sweaters', component: WsweaterComponent },
       { path: 'women/pants', component: WpantsComponent },
       { path: 'item/:id', component: ItemviewComponent },
+      { path: 'profile/edit/:id', component: EditProfileComponent },
+      { path: 'sales', component: SalesComponent },
+      { path: 'profile', component: ProfileComponent }
     ])
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }, AuthGuard
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })
