@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import {RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { ItemsService } from './items.service';
 import { MatCardModule } from '@angular/material/card';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
@@ -23,10 +22,18 @@ import { AdminItemCatalogComponent } from './admin/admin-item-catalog/admin-item
 import { LoginComponent } from './login/login.component';
 import { BsCarouselComponent } from './bs-carousel/bs-carousel.component';
 import { OceansideHeaderComponent } from './oceanside-header/oceanside-header.component';
-import { PopularProductsComponent } from './popular-products/popular-products.component';
+import { PopularProductsComponent } from './items/popular-products/popular-products.component';
 import { SignupComponent } from './signup/signup.component';
 import { AuthInterceptor } from './auth-interceptor';
-import { MenProductsComponent } from './men-products/men-products.component';
+import { MenProductsComponent } from './items/men-products/men-products.component';
+import { MsweaterComponent } from './items/men-products/msweater/msweater.component';
+import { MpantsComponent } from './items/men-products/mpants/mpants.component';
+import { WomenProductsComponent } from './items/women-products/women-products.component';
+import { WsweaterComponent } from './items/women-products/wsweater/wsweater.component';
+import { WpantsComponent } from './items/women-products/wpants/wpants.component';
+import { ItemviewComponent } from './items/itemview/itemview.component';
+import { ItemdisplayComponent } from './items/itemdisplay/itemdisplay.component';
+import { EditProfileComponent } from './edit-profile/edit-profile.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +52,14 @@ import { MenProductsComponent } from './men-products/men-products.component';
     PopularProductsComponent,
     SignupComponent,
     MenProductsComponent,
+    MsweaterComponent,
+    MpantsComponent,
+    WomenProductsComponent,
+    WsweaterComponent,
+    WpantsComponent,
+    ItemviewComponent,
+    ItemdisplayComponent,
+    EditProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -61,7 +76,7 @@ import { MenProductsComponent } from './men-products/men-products.component';
     BrowserAnimationsModule,
     MatPaginatorModule,
     RouterModule.forRoot([
-      { path: '', component: HomeComponent},
+      { path: '', component: HomeComponent },
       { path: 'products', component: ItemCatalogComponent },
       { path: 'shopping-cart', component: ShoppingCartComponent },
       { path: 'check-out', component: CheckOutComponent },
@@ -69,10 +84,19 @@ import { MenProductsComponent } from './men-products/men-products.component';
       { path: 'login', component: LoginComponent },
       { path: 'signup', component: SignupComponent },
       { path: 'admin/products', component: AdminItemCatalogComponent },
-      { path: 'men-products', component: MenProductsComponent },
+      { path: 'men', component: MenProductsComponent },
+      { path: 'men/sweaters', component: MsweaterComponent },
+      { path: 'men/pants', component: MpantsComponent },
+      { path: 'women', component: WomenProductsComponent },
+      { path: 'women/sweaters', component: WsweaterComponent },
+      { path: 'women/pants', component: WpantsComponent },
+      { path: 'item/:id', component: ItemviewComponent },
+      { path: 'profile/edit/:id', component: EditProfileComponent }
     ])
   ],
-  providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

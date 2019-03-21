@@ -1,6 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { Subscription } from 'rxjs';
+import { AuthData } from '../auth-data-model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'bs-navbar',
@@ -10,9 +12,12 @@ import { Subscription } from 'rxjs';
 export class BsNavbarComponent implements OnInit, OnDestroy {
 
   userIsAuthenticated = false;
-  private authListenerSubs: Subscription;
+  user: AuthData;
 
-  constructor(private authService: AuthService) {}
+  private authListenerSubs: Subscription;
+  private userListenerSubs: Subscription;
+
+  constructor(private authService: AuthService, public router: Router) {}
 
 
   ngOnInit() {
@@ -21,6 +26,16 @@ export class BsNavbarComponent implements OnInit, OnDestroy {
       .subscribe(isAuthenticated => {
         this.userIsAuthenticated = isAuthenticated;
       });
+
+    this.userListenerSubs = this.authService.getAuthUserListener().subscribe((user: AuthData) => {
+      this.user = user;
+    });
+
+    console.log(this.user);
+  }
+
+  onUser(userEmail: string) {
+    this.router.navigate(['profile/edit', userEmail]);
   }
 
   onLogout() {

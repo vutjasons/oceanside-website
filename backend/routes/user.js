@@ -47,6 +47,9 @@ router.post("/login", (req, res, next) => {
           message: "Password failed"
         });
       }
+      else {
+        userId: fetchedUser._id;
+      }
       const token = jwt.sign(
         { email: fetchedUser.email, userId: fetchedUser._id },
         "secret_this_should_be_longer",
@@ -61,6 +64,39 @@ router.post("/login", (req, res, next) => {
         message: "Auth failed"
       });
     });
+});
+
+router.get("", (req, res, next) => {
+  User.find().then(documents => {
+    res.status(200).json({
+      message: "Posts fetched successfully!",
+      users: documents
+    });
+  });
+});
+
+//Retreives specific items information
+router.get("/:id", (req, res, next) => {
+  User.findById(req.params.id).then(user => {
+    if (user) {
+      res.status(200).json(user);
+    } else {
+      res.status(404).json({ message: "Item not found!" });
+    }
+  });
+});
+
+//Updates item information
+router.put("/:id", (req, res, next) => {
+  const user = new User({
+    fname: req.body.itemName,
+    flname: req.body.itemSize,
+    email: req.body.itemGender,
+    password: req.body.itemType,
+  });
+  Item.updateOne({ _id: req.params.id }, item).then(result => {
+    res.status(200).json({ message: "Update successful!" });
+  });
 });
 
 module.exports = router;
