@@ -1,0 +1,28 @@
+<div id="item-cat">
+  <div id="filter-menu" class="row">
+    <div class="col-3">
+      <div class="list-group">
+        <li class="list-group-item">
+          <a class="nav-link" routerLink="/women">All</a>
+        </li>
+        <li class="list-group-item">
+          <a class="nav-link" routerLink="/women/sweaters">Sweaters</a>
+        </li>
+        <li class="list-group-item">
+          <a class="nav-link" routerLink="/women/pants">Pants</a>
+        </li>
+      </div>
+    </div>
+    <div class="col">
+      <div class="row">
+        <ng-container *ngFor="let item of pants">
+          <div class="col">
+            <div (click)="onClick(item.id)">
+              <app-itemdisplay [item]="item"></app-itemdisplay>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</div>
