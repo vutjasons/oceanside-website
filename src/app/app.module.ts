@@ -34,8 +34,11 @@ import { WpantsComponent } from './items/women-products/wpants/wpants.component'
 import { ItemviewComponent } from './items/itemview/itemview.component';
 import { ItemdisplayComponent } from './items/itemdisplay/itemdisplay.component';
 import { AuthGuard } from './auth.guard';
+<<<<<<< HEAD
 import { SalesComponent } from './items/sales/sales.component';
 import { ProfileComponent } from './profile/profile.component';
+=======
+>>>>>>> origin/master
 
 @NgModule({
   declarations: [
@@ -61,8 +64,11 @@ import { ProfileComponent } from './profile/profile.component';
     WpantsComponent,
     ItemviewComponent,
     ItemdisplayComponent,
+<<<<<<< HEAD
     SalesComponent,
     ProfileComponent,
+=======
+>>>>>>> origin/master
   ],
   imports: [
     BrowserModule,
@@ -93,9 +99,13 @@ import { ProfileComponent } from './profile/profile.component';
       { path: 'women', component: WomenProductsComponent },
       { path: 'women/sweaters', component: WsweaterComponent },
       { path: 'women/pants', component: WpantsComponent },
+<<<<<<< HEAD
       { path: 'sales', component: SalesComponent },
       { path: 'item/:id', component: ItemviewComponent },
       { path: 'profile', component: ProfileComponent },
+=======
+      { path: 'item/:id', component: ItemviewComponent },
+>>>>>>> origin/master
     ])
   ],
   providers: [
