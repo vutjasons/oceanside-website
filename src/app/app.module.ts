@@ -34,6 +34,7 @@ import { WpantsComponent } from './items/women-products/wpants/wpants.component'
 import { ItemviewComponent } from './items/itemview/itemview.component';
 import { ItemdisplayComponent } from './items/itemdisplay/itemdisplay.component';
 import { AuthGuard } from './auth.guard';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -59,6 +60,7 @@ import { AuthGuard } from './auth.guard';
     WpantsComponent,
     ItemviewComponent,
     ItemdisplayComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,
@@ -90,6 +92,7 @@ import { AuthGuard } from './auth.guard';
       { path: 'women/sweaters', component: WsweaterComponent },
       { path: 'women/pants', component: WpantsComponent },
       { path: 'item/:id', component: ItemviewComponent },
+      { path: 'profile', component: ProfileComponent },
     ])
   ],
   providers: [

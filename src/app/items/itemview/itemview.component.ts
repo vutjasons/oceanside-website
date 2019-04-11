@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy, Output, Input } from '@angular/core';
 import { Item } from '../item.model';
 import { ItemsService } from '../items.service';
 import { Subscription } from 'rxjs';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { EventEmitter } from '@angular/core';
 
 @Component({
@@ -13,7 +13,7 @@ import { EventEmitter } from '@angular/core';
 export class ItemviewComponent implements OnInit {
 
   public items: Item;
-  constructor(private route: ActivatedRoute, private itemsService: ItemsService) { }
+  constructor(private route: ActivatedRoute, private itemsService: ItemsService, public router: Router) { }
 
   ngOnInit() {
     const id = this.route.snapshot.params.id;
