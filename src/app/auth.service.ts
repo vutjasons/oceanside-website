@@ -3,8 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { AuthData } from './auth-data-model';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
-
-
+import { Variable } from '@angular/compiler/src/render3/r3_ast';
 
 
 @Injectable({ providedIn: 'root' })
@@ -67,6 +66,7 @@ export class AuthService {
           const now = new Date();
           const expirationDate = new Date(now.getTime() + expiresInDuration * 1000);
           this.saveAuthData(token, expirationDate);
+          this.saveUserInfo(email);
           this.router.navigate(['/']);
         }
       });
@@ -96,6 +96,30 @@ export class AuthService {
     this.router.navigate(['/']);
   }
 
+  getUserInfo(userID : string) {
+    console.log(userID);
+    this.http.get('http://localhost:4000/api/user/retrieve/' + userID)
+      .subscribe(response => {
+        let fetchedUser = response;
+        sessionStorage.setItem('userInfo', JSON.stringify(fetchedUser));
+      })
+  }
+
+  editUserInfo(userID : string, fname : string, lname : string, email : string) {
+    const authData : AuthData = {
+      fname : fname,
+      lname : lname,
+      email : email,
+      password : ''
+    };
+    console.log(authData);
+    this.http.put('http://localhost:4000/api/user/' + userID, authData)
+      .subscribe(response => {
+        console.log(response);
+        sessionStorage.setItem('userInfo', JSON.stringify(response));
+      })
+  }
+
   private setAuthTimer(duration: number) {
     console.log('Setting timer: ' + duration);
     this.tokenTimer = setTimeout(() => {
@@ -108,9 +132,19 @@ export class AuthService {
     localStorage.setItem('expiration', expirationDate.toISOString());
   }
 
+  private saveUserInfo(email : string) {
+    sessionStorage.setItem('email', email);
+  }
+
   private clearAuthData() {
     localStorage.removeItem('token');
     localStorage.removeItem('expiration');
+  }
+
+  private clearUserInfo() {
+    localStorage.removeItem('fname');
+    localStorage.removeItem('lname');
+    localStorage.removeItem('email');
   }
 
   private getAuthData() {
