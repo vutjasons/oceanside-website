@@ -48,7 +48,7 @@ router.post("/login", (req, res, next) => {
         });
       }
       const token = jwt.sign(
-        { email: fetchedUser.email, userId: fetchedUser._id },
+        { Email: fetchedUser.email, userID: fetchedUser._id, FirstName: fetchedUser.fname, LastName: fetchedUser.lname },
         "secret_this_should_be_longer",
         { expiresIn: "1h" }
       );
@@ -64,15 +64,52 @@ router.post("/login", (req, res, next) => {
     });
 });
 
-//Retreives specific items information
-router.get("/:id", (req, res, next) => {
-  Item.findById(req.params.id).then(user => {
-    if (user) {
-      res.status(200).json(user);
-    } else {
-      res.status(404).json({ message: "User not found!" });
-    }
-  });
+router.post("/check/:id", (req,res,next) => {
+  User.findOne({_id : req.params.id})
+    .then(function(err,User){
+      if(err){
+        console.log("Error retrieving user");
+      }else{
+        let fetchedUser = res.json(User);
+        if(bcrypt.compare(fetchedUser.password,req.params.password)){
+          console.log("Same Password");
+        }else{
+          console.log("Different Password");
+        }
+      }
+    })
+});
+
+router.get("/retrieve/:id", (req,res,next) => {
+  console.log(req.params.id);
+  User.findOne({_id : req.params.id})
+    .exec(function(err,User){
+      if(err){
+        console.log("Error retrieving user");
+      }else{
+        res.json(User);
+        }
+    })
+});
+
+router.put("/:id", function(req, res, next) {
+    console.log(req.params);
+    User.findOneAndUpdate({_id : req.params.id},
+      {
+        $set: {fname : req.body.fname, lname: req.body.lname, email: req.body.email}
+      },
+      {
+        new: true
+      },
+      function(err, updatedUser){
+        if(err){
+          res.send("Error updating user");
+        }else{
+          console.log("ID: " + req.params.fname + " fname: " + req.body.fname, " lname: " + req.body.lname + " email: " + req.body.email);
+          res.json(updatedUser);
+        }
+      }
+    );
 });
 
 
