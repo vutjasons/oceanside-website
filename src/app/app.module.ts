@@ -63,6 +63,7 @@ import { SalesComponent } from './items/sales/sales.component';
     ItemviewComponent,
     ItemdisplayComponent,
     ProfileComponent,
+    SalesComponent,
 
   ],
   imports: [

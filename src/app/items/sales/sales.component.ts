@@ -29,11 +29,10 @@ export class SalesComponent implements OnInit {
         this.isLoading = false;
         this.items = items;
       });
-    }
+  }
 
-    onClick(itemId: string)
-    {
-      this.router.navigate(['/item', itemId]);
-    }
+  onClick(itemId: string) {
+    this.router.navigate(['/item', itemId]);
+  }
 
 }
