@@ -35,6 +35,8 @@ import { ItemviewComponent } from './items/itemview/itemview.component';
 import { ItemdisplayComponent } from './items/itemdisplay/itemdisplay.component';
 import { AuthGuard } from './auth.guard';
 import { ProfileComponent } from './profile/profile.component';
+import { SalesComponent } from './items/sales/sales.component';
+
 
 @NgModule({
   declarations: [
@@ -61,6 +63,7 @@ import { ProfileComponent } from './profile/profile.component';
     ItemviewComponent,
     ItemdisplayComponent,
     ProfileComponent,
+
   ],
   imports: [
     BrowserModule,
@@ -91,8 +94,10 @@ import { ProfileComponent } from './profile/profile.component';
       { path: 'women', component: WomenProductsComponent },
       { path: 'women/sweaters', component: WsweaterComponent },
       { path: 'women/pants', component: WpantsComponent },
+      { path: 'sales', component: SalesComponent },
       { path: 'item/:id', component: ItemviewComponent },
       { path: 'profile', component: ProfileComponent },
+
     ])
   ],
   providers: [
