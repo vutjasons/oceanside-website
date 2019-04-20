@@ -14,6 +14,7 @@ export class ShoppingCartComponent implements OnInit {
   // tslint:disable-next-line:no-inferrable-types
   total: number = 0;
 
+
   constructor(private activatedRoute: ActivatedRoute, private itemService: ItemsService) { }
 
   ngOnInit() {
@@ -21,7 +22,6 @@ export class ShoppingCartComponent implements OnInit {
       // tslint:disable-next-line:no-string-literal
       // tslint:disable-next-line:no-var-keyword
       var id2 = params['id'];
-      console.log(id2);
       if (id2) {
         this.itemService.getItem(id2).subscribe(itemData => {
           var item: Item = {
