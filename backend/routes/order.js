@@ -17,7 +17,7 @@ router.post("", (req, res, next) => {
     cardNum: req.body.userInfo.cardnumber,
     cvc: req.body.userInfo.cvc,
     items: req.body.item,
-    totalCost: req.body.totalCost,
+    totalCost: req.body.total,
   });
   order.save().then(createdItem => {
     res.status(201).json({

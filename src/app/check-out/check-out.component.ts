@@ -57,6 +57,7 @@ export class CheckOutComponent implements OnInit {
     let order = {
     datePlaced: new Date().getTime(),
     userInfo: info,
+    total: this.total,
     item: this.items.map(i => {
       return {
         product: {
@@ -64,7 +65,6 @@ export class CheckOutComponent implements OnInit {
           size: i.itemSize,
           price: i.itemPrice,
         },
-        total: this.total
       };
     })
   };
