@@ -36,6 +36,7 @@ import { ItemdisplayComponent } from './items/itemdisplay/itemdisplay.component'
 import { AuthGuard } from './auth.guard';
 import { ProfileComponent } from './profile/profile.component';
 import { SalesComponent } from './items/sales/sales.component';
+import { EditProfileComponent } from './edit-profile/edit-profile.component';
 
 
 @NgModule({
@@ -64,6 +65,7 @@ import { SalesComponent } from './items/sales/sales.component';
     ItemdisplayComponent,
     ProfileComponent,
     SalesComponent,
+    EditProfileComponent,
 
   ],
   imports: [
@@ -98,7 +100,7 @@ import { SalesComponent } from './items/sales/sales.component';
       { path: 'sales', component: SalesComponent },
       { path: 'item/:id', component: ItemviewComponent },
       { path: 'profile', component: ProfileComponent },
-
+      { path: 'edit-profile', component: EditProfileComponent},
     ])
   ],
   providers: [

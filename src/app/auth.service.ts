@@ -44,6 +44,30 @@ export class AuthService {
       });
   }
 
+  editUserInfo(userID : string, fname : string, lname : string, email : string) {
+    const authData : AuthData = {
+      fname : fname,
+      lname : lname,
+      email : email,
+      password : ''
+    };
+    console.log(authData);
+    this.http.put('http://localhost:4000/api/user/' + userID, authData)
+      .subscribe(response => {
+        console.log(response);
+        sessionStorage.setItem('userInfo', JSON.stringify(response));
+      })
+  }
+
+  getUserInfo(userID : string) {
+    console.log(userID);
+    this.http.get('http://localhost:4000/api/user/retrieve/' + userID)
+      .subscribe(response => {
+        let fetchedUser = response;
+        sessionStorage.setItem('userInfo', JSON.stringify(fetchedUser));
+      })
+  }
+
   login(fname: string, lname: string, email: string, password: string) {
     const authData: AuthData = {
       fname: fname,
