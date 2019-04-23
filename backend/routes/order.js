@@ -7,6 +7,7 @@ const router = express.Router();
 //Creates order
 router.post("", (req, res, next) => {
   const order = new Order({
+    userId: req.body.userId,
     datePlaced: req.body.datePlaced,
     fname: req.body.userInfo.fname,
     lname: req.body.userInfo.lname,

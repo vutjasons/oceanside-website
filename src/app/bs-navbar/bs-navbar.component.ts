@@ -16,10 +16,12 @@ export class BsNavbarComponent implements OnInit, OnDestroy {
 
 
 
-  constructor(private authService: AuthService, public router: Router) {}
+
+  constructor(private authService: AuthService, public router: Router) {
+  }
 
 
-  ngOnInit() {
+  async ngOnInit() {
     this.userIsAuthenticated = this.authService.getIsAuth();
     this.authListenerSubs = this.authService
       .getAuthStatusListener()

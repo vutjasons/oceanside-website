@@ -54,12 +54,11 @@ export class AuthService {
     console.log(authData);
     this.http.put('http://localhost:4000/api/user/' + userID, authData)
       .subscribe(response => {
-        console.log(response);
         sessionStorage.setItem('userInfo', JSON.stringify(response));
       })
   }
 
-  getUserInfo(userID : string) {
+  getUserInfo(userID: string) {
     console.log(userID);
     this.http.get('http://localhost:4000/api/user/retrieve/' + userID)
       .subscribe(response => {

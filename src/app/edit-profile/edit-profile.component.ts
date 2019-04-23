@@ -10,14 +10,14 @@ import { Router } from '@angular/router';
   styleUrls: ['./edit-profile.component.css']
 })
 export class EditProfileComponent implements OnInit {
-  private token : string;
-  private userInfo : string[];
-  private fname : string;
-  private lname : string;
-  private email : string;
-  private id : string;
+  private token: string;
+  private userInfo: string[];
+  private fname: string;
+  private lname: string;
+  private email: string;
+  private id: string;
 
-  constructor(private authService : AuthService, private router: Router) {
+  constructor(private authService: AuthService, private router: Router) {
     this.token = sessionStorage.getItem('userInfo');
     this.userInfo = JSON.stringify(this.token).split(",");
     this.email = this.userInfo[3].split(":")[1].split("\"")[1].split("\\")[0];
@@ -30,11 +30,10 @@ export class EditProfileComponent implements OnInit {
   ngOnInit() {
   }
 
-  onSubmit(form : Form){
-    console.log(this.id);
-    this.authService.editUserInfo(this.id, 
-    (<HTMLInputElement> document.getElementById('fname')).value, 
-    (<HTMLInputElement> document.getElementById('lname')).value, 
+  onSubmit(form: Form){
+    this.authService.editUserInfo(this.id,
+    (<HTMLInputElement> document.getElementById('fname')).value,
+    (<HTMLInputElement> document.getElementById('lname')).value,
     (<HTMLInputElement> document.getElementById('email')).value);
     this.router.navigate(['']);
   }

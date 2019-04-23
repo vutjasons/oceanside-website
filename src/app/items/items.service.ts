@@ -297,8 +297,10 @@ export class ItemsService {
       itemPrice: itemPrice,
       itemStock: itemStock
     };
+
+    console.log(item);
     this.http
-      .put('http://localhost:4000/api/items' + id, item)
+      .put('http://localhost:4000/api/items/' + id, item)
       .subscribe(response => {
         const updatedItems = [...this.items];
         const oldItemIndex = updatedItems.findIndex(i => i.id === item.id);

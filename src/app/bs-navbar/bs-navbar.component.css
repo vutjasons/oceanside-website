@@ -1,3 +1,7 @@
 .dropdown-toggle {
   cursor: pointer;
 }
+
+.navbar.navbar-expand-lg.navbar-dark li a {
+  color: black;
+}

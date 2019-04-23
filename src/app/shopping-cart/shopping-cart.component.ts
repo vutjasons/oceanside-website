@@ -75,7 +75,7 @@ export class ShoppingCartComponent implements OnInit {
       for (var i = 0; i < cart.length; i++) {
         let item = JSON.parse(cart[i]);
         this.items.push({
-          id: item._id,
+          id: item.id,
           itemName: item.itemName,
           itemGender: item.itemGender,
           itemPrice: item.itemPrice,
@@ -86,6 +86,22 @@ export class ShoppingCartComponent implements OnInit {
         this.total += item.itemPrice;
       }
     }
+  }
+
+  remove(id: string): void {
+    let cart: any = JSON.parse(sessionStorage.getItem('cart'));
+    let index: number = -1;
+    for (var i = 0; i < cart.length; i++) {
+      let item: Item = JSON.parse(cart[i]);
+      console.log(item.id);
+      console.log(id);
+      if (item.id == id) {
+        cart.splice(i, 1);
+        break;
+      }
+    }
+    sessionStorage.setItem('cart', JSON.stringify(cart));
+    this.loadCart();
   }
 
 

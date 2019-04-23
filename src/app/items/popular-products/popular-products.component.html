@@ -1,31 +1,18 @@
 <h3>Popular Clothing</h3>
-<div class="row">
-  <div class="col-lg-3 col-md-4 col-sm-6">
-    <div>
-      <img class="red-jacket" src="assets/images/sweater.jpg" alt="red jacket" style="width: 150px; height:150px;" />
-      <h5 class="sweater">{{ items[0]?.itemName }}</h5>
-      <p class="price-sweater">{{ items[0]?.itemPrice }}</p>
-    </div>
+  <div class="row" align:center>
+    <ng-container>
+        <div (click)="onClick(sweaters[0].id)">
+          <app-itemdisplay [item]="sweaters[0]"></app-itemdisplay>
+        </div>
+        <div (click)="onClick(pants[0].id)">
+          <app-itemdisplay [item]="pants[0]"></app-itemdisplay>
+        </div>
+        <div (click)="onClick(wsweaters[0].id)">
+          <app-itemdisplay [item]="wsweaters[0]"></app-itemdisplay>
+        </div>
+        <div (click)="onClick(wpants[0].id)">
+          <app-itemdisplay [item]="wpants[0]"></app-itemdisplay>
+        </div>
+    </ng-container>
   </div>
-  <div class="col-lg-3 col-md-4 col-sm-6">
-    <div>
-      <img class="red-jacket" src="assets/images/sweater.jpg" alt="red jacket" style="width: 150px; height:150px;" />
-      <h5 class="sweater">{{ items[1]?.itemName }}</h5>
-      <p class="price-sweater">{{ items[1]?.itemPrice }}</p>
-    </div>
-  </div>
-  <div class="col-lg-3 col-md-4 col-sm-6">
-    <div>
-      <img class="red-jacket" src="assets/images/sweater.jpg" alt="red jacket" style="width: 150px; height:150px;" />
-      <h5 class="sweater">{{ items[2]?.itemName }}</h5>
-      <p class="price-sweater">{{ items[2]?.itemPrice }}</p>
-    </div>
-  </div>
-  <div class="col-lg-3 col-md-4 col-sm-6">
-    <div>
-      <img class="red-jacket" src="assets/images/sweater.jpg" alt="red jacket" style="width: 150px; height:150px;" />
-      <h5 class="sweater">{{ items[3]?.itemName }}</h5>
-      <p class="price-sweater">{{ items[3]?.itemPrice }}</p>
-    </div>
-  </div>
-</div>
+
