@@ -30,7 +30,6 @@ export class ProfileComponent implements OnInit {
   ngOnInit() {
     this.token = sessionStorage.getItem('userInfo');
     this.userInfo = JSON.stringify(this.token).split(",");
-    console.log(this.userInfo);
     this.email = this.userInfo[3].split(":")[1].split("\"")[1].split("\\")[0];
     this.lname = this.userInfo[2].split(":")[1].split("\"")[1].split("\\")[0];
     this.fname = this.userInfo[1].split(":")[1].split("\"")[1].split("\\")[0];

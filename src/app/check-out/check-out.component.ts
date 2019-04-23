@@ -5,6 +5,7 @@ import { ItemCatalogComponent } from '../item-catalog/item-catalog.component';
 import { formArrayNameProvider } from '@angular/forms/src/directives/reactive_directives/form_group_name';
 import { ItemsService } from '../items/items.service';
 import { OrderService } from '../order.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-check-out',
@@ -19,7 +20,7 @@ export class CheckOutComponent implements OnInit {
   userId: string;
   private token: string;
   private userInfo: string[];
-  constructor(private orderService: OrderService, private itemService: ItemsService) { }
+  constructor(private orderService: OrderService, private itemService: ItemsService, private router: Router) { }
 
   ngOnInit() {
     this.total = 0;
@@ -84,16 +85,15 @@ export class CheckOutComponent implements OnInit {
       };
     })
   };
-
     // tslint:disable-next-line:prefer-for-of
     for (let i = 0; i < this.items.length; i++) {
       var stock = this.items[i].itemStock - 1;
       // tslint:disable-next-line:max-line-length
       this.itemService.updateItem(this.items[i].id, this.items[i].itemName, this.items[i].itemSize, this.items[i].itemGender, this.items[i].itemType, this.items[i].itemPrice, stock);
   }
-
     this.orderService.storeOrder(order);
     sessionStorage.removeItem('cart');
+    this.router.navigate(['/order-complete']);
 }
 
 }

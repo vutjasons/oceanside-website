@@ -307,7 +307,6 @@ export class ItemsService {
         updatedItems[oldItemIndex] = item;
         this.items = updatedItems;
         this.itemsUpdated.next([...this.items]);
-        this.router.navigate(['/']);
       });
   }
 
