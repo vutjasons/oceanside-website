@@ -1,0 +1,61 @@
+<h2>
+  Payment Information
+</h2>
+
+<form (submit)="onCheckOut(checkoutForm)" #checkoutForm="ngForm">
+  <div class="two-col">
+    <div class="column">
+      <mat-form-field>
+        <input matInput name="fname" ngModel type="text" placeholder="First Name" #fnameInput="ngModel" required>
+        <mat-error *ngIf="fnameInput.invalid">Please enter a valid first name.</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput name="lname" ngModel type="text" placeholder="Last Name" #lnameInput="ngModel" required>
+        <mat-error *ngIf="lnameInput.invalid">Please enter a valid last name.</mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput name="address" ngModel type="text" placeholder="Billing Address" #addressInput="ngModel" required>
+        <mat-error *ngIf="addressInput.invalid">Please enter a valid address</mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput name="city" ngModel type="text" placeholder="City" #cityInput="ngModel" required>
+        <mat-error *ngIf="cityInput.invalid">Please enter a valid city</mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput name="state" ngModel type="text" placeholder="State" #stateInput="ngModel" required>
+        <mat-error *ngIf="stateInput.invalid">Please enter a valid state</mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput name="zipcode" ngModel type="text" placeholder="Zipcode" #zipcodeInput="ngModel" required>
+        <mat-error *ngIf="zipcodeInput.invalid">Please enter a valid zipcode</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="column">
+      <mat-form-field>
+        <input matInput name="cardnumber" ngModel type="text" placeholder="Card Number" #cardnumberInput="ngModel"
+          required>
+        <mat-error *ngIf="cardnumberInput.invalid">Please enter a valid card number</mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput name="expiration" ngModel type="text" placeholder="Expiration Date (MM/YY)" #expirationInput="ngModel"
+          required>
+        <mat-error *ngIf="expirationInput.invalid">Please enter a valid date</mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput name="cvc" ngModel type="text" placeholder="CVC" #cvcInput="ngModel" required>
+        <mat-error *ngIf="cvcInput.invalid">Please enter a valid CVC</mat-error>
+      </mat-form-field>
+
+      <p>
+        <button mat-raised-button color="accent" type="submit">Check Out</button>
+      </p>
+    </div>
+  </div>
+</form>
