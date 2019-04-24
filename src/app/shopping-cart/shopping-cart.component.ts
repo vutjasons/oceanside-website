@@ -24,8 +24,8 @@ export class ShoppingCartComponent implements OnInit {
  cartCheck(): void {
     let cart = JSON.parse(sessionStorage.getItem('cart'));
     if(cart.length == 0){
-      // window.alert("Cart is empty");
-      (<HTMLInputElement> document.getElementById('cOut')).disabled = true;
+      window.alert("Cart is empty");
+//       (<HTMLInputElement> document.getElementById('cOut')).disabled = true;
     } else {
       this.router.navigate(['/check-out']);
     }
@@ -77,10 +77,10 @@ export class ShoppingCartComponent implements OnInit {
         this.loadCart();
       }
     }));
-    // let cart = JSON.parse(sessionStorage.getItem('cart'));
-    // if(cart.length == 0) {
-    //   (<HTMLInputElement> document.getElementById('cOut')).disabled = true;
-    // }
+     let cart = JSON.parse(sessionStorage.getItem('cart'));
+     if(cart.length == 0) {
+       (<HTMLInputElement> document.getElementById('cOut')).disabled = true;
+     }
   }
 
   loadCart(): void {
