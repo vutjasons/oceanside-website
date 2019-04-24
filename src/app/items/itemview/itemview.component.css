@@ -1,0 +1,14 @@
+#viewItem {
+  text-align: center;
+  margin-top: 10%;
+}
+
+#cart {
+  text-align: center;
+  margin-left: 40px;
+}
+
+#size-choose {
+  position: relative;
+  margin-left: 40%;
+}

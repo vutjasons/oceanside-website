@@ -1,0 +1,23 @@
+<div class="container">
+    <h2>User Information</h2>        
+    <table class="table">
+      <thead>
+        <tr>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Email</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>{{fname}}</td>
+          <td>{{lname}}</td>
+          <td>{{email}}</td>
+        </tr>
+      </tbody>
+    </table>
+    <button type="button" mat-raised-button color="primary" class="btn btn-primary btn-block" routerLink='/edit-profile'>Edit User Information</button>
+    <button type="button" mat-raised-button color="primary" class="btn btn-primary btn-block" routerLink='/change-password'>Change Password</button>
+    <button type="button" mat-raised-button color="primary" class="btn btn-primary btn-block" routerLink='/delete-profile'>Delete Profile</button>
+  
+  </div>

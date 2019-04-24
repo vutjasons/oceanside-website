@@ -1,0 +1,33 @@
+
+/* Create two equal columns that floats next to each other */
+.column {
+    float: left;
+    width: 50%;
+    padding: 100px;
+    padding-top: 25px;
+  }
+
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type="text"] { 
+  box-shadow: none;
+  /* border-bottom: none; */
+  /* text-decoration: none; */
+}
+
+
+
+input::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: black;
+  opacity: 1; /* Firefox */
+}
+
+select{
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  width: 180px;
+}

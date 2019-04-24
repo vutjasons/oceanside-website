@@ -1,0 +1,18 @@
+<h3>Popular Clothing</h3>
+  <div class="row" align:center>
+    <ng-container>
+        <div (click)="onClick(sweaters[0].id)">
+          <app-itemdisplay [item]="sweaters[0]"></app-itemdisplay>
+        </div>
+        <div (click)="onClick(pants[0].id)">
+          <app-itemdisplay [item]="pants[0]"></app-itemdisplay>
+        </div>
+        <div (click)="onClick(wsweaters[0].id)">
+          <app-itemdisplay [item]="wsweaters[0]"></app-itemdisplay>
+        </div>
+        <div (click)="onClick(wpants[0].id)">
+          <app-itemdisplay [item]="wpants[0]"></app-itemdisplay>
+        </div>
+    </ng-container>
+  </div>
+
