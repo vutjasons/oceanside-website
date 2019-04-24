@@ -6,7 +6,7 @@
   <div class="two-col">
     <div class="column">
       <mat-form-field>
-        <input matInput name="fname" ngModel type="text" placeholder="First Name" #fnameInput="ngModel" required>
+        <input matInput name="fname" ngModel type="text" style = "text-decoration: none !important"placeholder="First Name" #fnameInput="ngModel" required>
         <mat-error *ngIf="fnameInput.invalid">Please enter a valid first name.</mat-error>
       </mat-form-field>
       <mat-form-field>
@@ -23,38 +23,93 @@
         <input matInput name="city" ngModel type="text" placeholder="City" #cityInput="ngModel" required>
         <mat-error *ngIf="cityInput.invalid">Please enter a valid city</mat-error>
       </mat-form-field>
-
+      <p></p>
+      <p>  
+          <select id = "state" placeholder = "State">
+              <option value="0" disabled>Select State
+              <option value="AL">Alabama
+              <option value="AK">Alaska
+              <option value="AZ">Arizona
+              <option value="AR">Arkansas
+              <option value="CA">California
+              <option value="CO">Colorado
+              <option value="CT">Connecticut
+              <option value="DE">Delaware
+              <option value="DC">District Of Columbia
+              <option value="FL">Florida
+              <option value="GA">Georgia
+              <option value="HI">Hawaii
+              <option value="ID">Idaho
+              <option value="IL">Illinois
+              <option value="IN">Indiana
+              <option value="IA">Iowa
+              <option value="KS">Kansas
+              <option value="KY">Kentucky
+              <option value="LA">Louisiana
+              <option value="ME">Maine
+              <option value="MD">Maryland
+              <option value="MA">Massachusetts
+              <option value="MI">Michigan
+              <option value="MN">Minnesota
+              <option value="MS">Mississippi
+              <option value="MO">Missouri
+              <option value="MT">Montana
+              <option value="NE">Nebraska
+              <option value="NV">Nevada
+              <option value="NH">New Hampshire
+              <option value="NJ">New Jersey
+              <option value="NM">New Mexico
+              <option value="NY">New York
+              <option value="NC">North Carolina
+              <option value="ND">North Dakota
+              <option value="OH">Ohio
+              <option value="OK">Oklahoma
+              <option value="OR">Oregon
+              <option value="PA">Pennsylvania
+              <option value="RI">Rhode Island
+              <option value="SC">South Carolina
+              <option value="SD">South Dakota
+              <option value="TN">Tennessee
+              <option value="TX">Texas
+              <option value="UT">Utah
+              <option value="VT">Vermont
+              <option value="VA">Virginia
+              <option value="WA">Washington
+              <option value="WV">West Virginia
+              <option value="WI">Wisconsin
+              <option value="WY">Wyoming
+              </select>	
+          </p>
+      
       <mat-form-field>
-        <input matInput name="state" ngModel type="text" placeholder="State" #stateInput="ngModel" required>
-        <mat-error *ngIf="stateInput.invalid">Please enter a valid state</mat-error>
-      </mat-form-field>
-
-      <mat-form-field>
-        <input matInput name="zipcode" ngModel type="text" placeholder="Zipcode" #zipcodeInput="ngModel" required>
+        <input matInput name="zipcode" ngModel type="number" onkeypress = "if(this.value.length == 5) return false;"
+         onwheel = "this.blur()" placeholder="Zipcode" #zipcodeInput="ngModel" required>
         <mat-error *ngIf="zipcodeInput.invalid">Please enter a valid zipcode</mat-error>
       </mat-form-field>
     </div>
 
     <div class="column">
-      <mat-form-field>
-        <input matInput name="cardnumber" ngModel type="text" placeholder="Card Number" #cardnumberInput="ngModel"
-          required>
-        <mat-error *ngIf="cardnumberInput.invalid">Please enter a valid card number</mat-error>
-      </mat-form-field>
-
-      <mat-form-field>
-        <input matInput name="expiration" ngModel type="text" placeholder="Expiration Date" #expirationInput="ngModel"
-          required>
-        <mat-error *ngIf="expirationInput.invalid">Please enter a valid date</mat-error>
-      </mat-form-field>
-
-      <mat-form-field>
-        <input matInput name="cvc" ngModel type="text" placeholder="CVC" #cvcInput="ngModel" required>
-        <mat-error *ngIf="cvcInput.invalid">Please enter a valid CVC</mat-error>
-      </mat-form-field>
+        <mat-form-field>
+          <input matInput name="cardnumber" ngModel oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+          type = "number"
+          maxlength = "16"  placeholder="Card Number" #cardnumberInput="ngModel"
+            required>
+          <mat-error *ngIf="cardnumberInput.invalid">Please enter a valid card number</mat-error>
+        </mat-form-field>
+  
+        <mat-form-field>
+          <input matInput name="expiration" ngModel type="text" placeholder="Expiration Date (MM/YY)" #expirationInput="ngModel"
+            required>
+          <mat-error *ngIf="expirationInput.invalid">Please enter a valid date</mat-error>
+        </mat-form-field>
+  
+        <mat-form-field>
+          <input matInput name="cvc" ngModel type="text" placeholder="CVC" #cvcInput="ngModel" required>
+          <mat-error *ngIf="cvcInput.invalid">Please enter a valid CVC</mat-error>
+        </mat-form-field>
 
       <p>
-        <button mat-raised-button color="accent" type="submit">Check Out</button>
+        <button mat-raised-button color="primary" type="submit">Check Out</button>
       </p>
     </div>
   </div>

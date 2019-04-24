@@ -28,6 +28,7 @@ export class EditProfileComponent implements OnInit {
    }
 
   ngOnInit() {
+
   }
 
   onSubmit(form: Form){
@@ -35,7 +36,7 @@ export class EditProfileComponent implements OnInit {
     (<HTMLInputElement> document.getElementById('fname')).value,
     (<HTMLInputElement> document.getElementById('lname')).value,
     (<HTMLInputElement> document.getElementById('email')).value);
-    this.router.navigate(['']);
+    this.router.navigate(['/profile']);
   }
 
 }

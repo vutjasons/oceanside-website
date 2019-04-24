@@ -36,6 +36,9 @@ import { AuthGuard } from './auth.guard';
 import { ProfileComponent } from './profile/profile.component';
 import { SalesComponent } from './items/sales/sales.component';
 import { EditProfileComponent } from './edit-profile/edit-profile.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { DeleteProfileComponent } from './delete-profile/delete-profile.component';
 
 
 @NgModule({
@@ -64,6 +67,9 @@ import { EditProfileComponent } from './edit-profile/edit-profile.component';
     ProfileComponent,
     SalesComponent,
     EditProfileComponent,
+    ChangePasswordComponent,
+    ForgotPasswordComponent,
+    DeleteProfileComponent,
 
   ],
   imports: [
@@ -100,6 +106,9 @@ import { EditProfileComponent } from './edit-profile/edit-profile.component';
       { path: 'profile', component: ProfileComponent },
       { path: 'edit-profile', component: EditProfileComponent},
       { path: 'order-complete', component: OrderCompleteComponent },
+      { path: 'change-password', component: ChangePasswordComponent},
+      { path: 'forgot-password', component: ForgotPasswordComponent},
+      { path: 'delete-profile', component: DeleteProfileComponent},
     ])
   ],
   providers: [

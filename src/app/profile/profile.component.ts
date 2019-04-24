@@ -20,11 +20,7 @@ export class ProfileComponent implements OnInit {
   private id : string;
 
   constructor(private authService: AuthService) {
-    this.token = localStorage.getItem('token');
-    this.decoded = this.parseJWT(this.token);
-    this.userInfo = JSON.stringify(this.decoded).split(",");
-    this.id = this.userInfo[1].split(":")[1].split("\"")[1];
-    this.authService.getUserInfo(this.id);
+    this.authService.getUserInfo(sessionStorage.getItem('userID'));
   }
 
   ngOnInit() {

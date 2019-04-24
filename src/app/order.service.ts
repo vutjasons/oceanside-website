@@ -19,5 +19,13 @@ export class OrderService {
         console.log(response);
       });
   }
+
+  charge(chargeInfo){
+    this.http.post('http://localhost:4000/api/order/checkout/', chargeInfo)
+    .subscribe(response => {
+      console.log(response);
+    })
+  }
 }
+
 

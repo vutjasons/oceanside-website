@@ -27,4 +27,20 @@ router.post("", (req, res, next) => {
   });
 });
 
+router.post('/checkout', (req, res, next) => {
+  var stripe = require("stripe")("sk_test_zFu13xn05onBjYAXe16exsFM0001pS32wn");
+  console.log(req.body);
+  // Token is created using Checkout or Elements!
+  // Get the payment token ID submitted by the form:
+  const token = req.body.stripeToken; // Using Express
+
+  (async () => {
+    const charge = await stripe.charges.create({
+      amount: req.body.total * 100,
+      currency: 'usd',
+      description: 'Example charge',
+      source: token,
+    });
+  })();
+})
 module.exports = router;

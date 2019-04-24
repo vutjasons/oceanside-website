@@ -48,7 +48,7 @@ router.post("/login", (req, res, next) => {
         });
       }
       const token = jwt.sign(
-        { email: fetchedUser.email, userId: fetchedUser._id },
+        { Email: fetchedUser.email, userID: fetchedUser._id, FirstName: fetchedUser.fname, LastName: fetchedUser.lname },
         "secret_this_should_be_longer",
         { expiresIn: "1h" }
       );
@@ -92,6 +92,68 @@ router.get("/retrieve/:id", (req,res,next) => {
     })
 });
 
+router.get("/forgot/:email", (req,res,next) => {
+  User.findOne({email : req.params.email})
+    .exec(function(err,User){
+      if(!User){
+        console.log("Error retrieving user");
+        res.status(401).send({
+          error: "Password failed"
+        })
+      }else{
+        console.log("Success");   
+        res.json(User);
+      }
+    })
+}); 
+
+router.get("/check/:id/:password", function(req, res, next) {
+  User.findOne({_id : req.params.id})
+  .exec(function(err,User){
+    if (err){
+      console.log("Error retrieving user");
+    }else {
+
+       return bcrypt.compare(req.params.password, User.password, (err,res1) => {
+         if (res1) {
+           console.log("User Pass: " + User.password);
+           console.log("Password : " + bcrypt.hashSync(req.params.password,10));
+           console.log("Success");
+           res.json(User);
+         }else{
+            console.log("User Pass:" + User.password);
+            console.log("Password: " + bcrypt.hashSync(req.params.password,10));
+            console.log("Passwords do not match");
+            res.status(401).send({
+              error: "Password failed"
+            });
+         }
+       });
+    }
+  })
+})
+
+router.put("/newPass/:email", function(req, res, next) {
+  var generatedPass = Math.random().toString(36).replace('0.', '');
+  console.log("Generated Pass: " + generatedPass);
+  var hash = bcrypt.hashSync(generatedPass, 10);
+  User.findOneAndUpdate({email : req.params.email},
+    {
+      $set: {password : hash}
+    },
+    {
+      new: true
+    },
+    function(err, updatedUser){
+      if(err){
+        res.send("Error updating user");
+      }else{
+        // res.json(updatedUser);
+        res.json(generatedPass);
+      }
+    });
+});
+
 router.put("/:id", function(req, res, next) {
     console.log(req.params);
     User.findOneAndUpdate({_id : req.params.id},
@@ -110,6 +172,39 @@ router.put("/:id", function(req, res, next) {
         }
       }
     );
+});
+
+router.delete("/delete/:id", function(req, res, next) {
+  User.findOneAndDelete({_id : req.params.id},
+    function(err, deletedUser){
+      if(err){
+        res.status(401).send({
+          error: "Could not delete"
+        });
+      }else{
+        res.json(deletedUser);
+      }
+    });
+});
+
+
+router.put("/password/:id", function(req, res, next) {
+  var hash = bcrypt.hashSync(req.body.password, 10);
+  User.findOneAndUpdate({_id : req.params.id},
+    {
+      $set: {password : hash}
+    },
+    {
+      new: true
+    },
+    function(err, updatedUser){
+      if(err){
+        res.send("Error updating user");
+      }else{
+        res.json(updatedUser);
+      }
+    }
+  );
 });
 
 

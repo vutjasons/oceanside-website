@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { AuthData } from './auth-data-model';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
+import { fakeAsync } from '@angular/core/testing';
+import { routerNgProbeToken } from '@angular/router/src/router_module';
 
 
 
@@ -41,8 +43,21 @@ export class AuthService {
       .post('http://localhost:4000/api/user/signup', authData)
       .subscribe(response => {
         console.log(response);
+      }, error => {
+        window.alert("E-mail already in database");
+        this.router.navigate(['/']);
       });
   }
+
+  deleteUser(userID : string) {
+    this.http.delete('http://localhost:4000/api/user/delete/' + userID)
+    .subscribe( response => {
+      window.alert("Successfully deleted your account");
+      console.log(response);
+    }, error => {
+      window.alert("There was an error deleting your account");
+    })
+}
 
   editUserInfo(userID : string, fname : string, lname : string, email : string) {
     const authData : AuthData = {
@@ -90,8 +105,11 @@ export class AuthService {
           const now = new Date();
           const expirationDate = new Date(now.getTime() + expiresInDuration * 1000);
           this.saveAuthData(token, expirationDate);
+          this.getUserID(email);
           this.router.navigate(['/']);
         }
+      }, error => {
+        window.alert("Login Failed");
       });
   }
 
@@ -147,5 +165,68 @@ export class AuthService {
       token: token,
       expirationDate: new Date(expirationDate)
     };
+  }
+
+
+  checkEmail(email : string)
+  {
+    const authData : AuthData = {
+      fname : '',
+      lname : '',
+      email : '',
+      password : '',
+    };
+    this.http.get('http://localhost:4000/api/user/forgot/' + email)
+    .subscribe( response => {
+      // console.log(JSON.stringify(response));
+      this.http.put('http://localhost:4000/api/user/newPass/' + email, authData)
+      .subscribe( response => {
+        console.log("Generated Pass" + JSON.stringify(response));
+        window.alert("New Password: " + JSON.stringify(response));
+      })
+    }, error => {
+      // console.log("Invalid E-mail");
+      window.alert("Invalid E-mail");
+    })
+  }
+
+  checkPassword(userID : string, newPassword : string, oldPassword : string){
+    const authData : AuthData = {
+      fname : '',
+      lname : '',
+      email : '',
+      password : newPassword
+    };
+    //console.log(authData.password);
+    this.http.get('http://localhost:4000/api/user/check/' + userID + '/' + oldPassword)
+      .subscribe( response => {
+        /*
+        fetch('http://httpstat.us/401')
+        .then(function() {
+          console.log(response);
+        }).catch(function() {
+          console.log("error");
+          return;
+        })
+        */
+        
+        this.http.put('http://localhost:4000/api/user/password/' + userID, authData)
+        .subscribe( response => {
+          window.alert("Successful");
+          this.router.navigate(['']);
+          console.log(response);
+        })
+      }, error => {
+        window.alert("Failed");
+      })
+  }
+
+  getUserID(email : string) {
+    this.http.get('http://localhost:4000/api/user/forgot/' + email)
+    .subscribe(response => {
+      let fetchedUser = JSON.stringify(response);
+      let userID = fetchedUser.split(',')[0].split(':')[1].split('\"')[1];
+      sessionStorage.setItem('userID', userID);
+    })
   }
 }

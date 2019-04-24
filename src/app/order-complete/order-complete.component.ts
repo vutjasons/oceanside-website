@@ -10,6 +10,7 @@ export class OrderCompleteComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+
   }
 
 }

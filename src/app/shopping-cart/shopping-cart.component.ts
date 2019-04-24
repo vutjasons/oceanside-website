@@ -2,6 +2,9 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Item } from '../items/item.model';
 import { ActivatedRoute } from '@angular/router';
 import { ItemsService } from '../items/items.service';
+import { Router } from '@angular/router';
+import { throwError } from 'rxjs';
+import { createEmptyUrlTree } from '@angular/router/src/url_tree';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -10,12 +13,24 @@ import { ItemsService } from '../items/items.service';
 })
 export class ShoppingCartComponent implements OnInit {
 
+  cartEmpty: boolean;
   items: Item[] = [];
   // tslint:disable-next-line:no-inferrable-types
   total: number = 0;
 
+  constructor(private activatedRoute: ActivatedRoute, private itemService: ItemsService, public router: Router) {
+  }
 
-  constructor(private activatedRoute: ActivatedRoute, private itemService: ItemsService) { }
+ cartCheck(): void {
+    let cart = JSON.parse(sessionStorage.getItem('cart'));
+    if(cart.length == 0){
+      // window.alert("Cart is empty");
+      (<HTMLInputElement> document.getElementById('cOut')).disabled = true;
+    } else {
+      this.router.navigate(['/check-out']);
+    }
+  }
+
 
   ngOnInit() {
     this.activatedRoute.params.subscribe((params => {
@@ -33,7 +48,6 @@ export class ShoppingCartComponent implements OnInit {
             itemStock: itemData.itemStock,
             itemType: itemData.itemType
           };
-
           if (sessionStorage.getItem('cart') == null) {
             let cart: any = [];
             cart.push(JSON.stringify(item));
@@ -63,6 +77,10 @@ export class ShoppingCartComponent implements OnInit {
         this.loadCart();
       }
     }));
+    // let cart = JSON.parse(sessionStorage.getItem('cart'));
+    // if(cart.length == 0) {
+    //   (<HTMLInputElement> document.getElementById('cOut')).disabled = true;
+    // }
   }
 
   loadCart(): void {
@@ -103,7 +121,5 @@ export class ShoppingCartComponent implements OnInit {
     sessionStorage.setItem('cart', JSON.stringify(cart));
     this.loadCart();
   }
-
-
 
 }
