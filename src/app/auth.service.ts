@@ -42,10 +42,11 @@ export class AuthService {
     this.http
       .post('http://localhost:4000/api/user/signup', authData)
       .subscribe(response => {
+        this.router.navigate(['/login']);
         console.log(response);
       }, error => {
         window.alert("E-mail already in database");
-        this.router.navigate(['/']);
+        this.router.navigate(['/signup']);
       });
   }
 

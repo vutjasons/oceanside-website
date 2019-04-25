@@ -32,11 +32,19 @@ export class EditProfileComponent implements OnInit {
   }
 
   onSubmit(form: Form){
-    this.authService.editUserInfo(this.id,
-    (<HTMLInputElement> document.getElementById('fname')).value,
-    (<HTMLInputElement> document.getElementById('lname')).value,
-    (<HTMLInputElement> document.getElementById('email')).value);
-    this.router.navigate(['/profile']);
+    if((<HTMLInputElement> document.getElementById('fname')).value == "" ||
+       (<HTMLInputElement> document.getElementById('lname')).value == "" ||
+       (<HTMLInputElement> document.getElementById('email')).value == "") {
+         window.alert("One of the fields is empty. Try Again.");
+       }
+    else {
+      this.authService.editUserInfo(this.id,
+        (<HTMLInputElement> document.getElementById('fname')).value,
+        (<HTMLInputElement> document.getElementById('lname')).value,
+        (<HTMLInputElement> document.getElementById('email')).value);
+        this.router.navigate(['']);
+        window.alert("Your information has been saved.");
+    }
   }
 
 }
