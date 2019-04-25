@@ -78,8 +78,10 @@ export class ShoppingCartComponent implements OnInit {
       }
     }));
      let cart = JSON.parse(sessionStorage.getItem('cart'));
-     if(cart.length == 0) {
-       (<HTMLInputElement> document.getElementById('cOut')).disabled = true;
+     if(cart.length != null) {
+       if (cart.length == 0) {
+         (<HTMLInputElement>document.getElementById('cOut')).disabled = true;
+       }
      }
   }
 

@@ -17,7 +17,7 @@ export class AuthService {
   private isAuthenticated = false;
   private tokenTimer: any;
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient, private router: Router) { }
 
   getToken() {
     return this.token;
@@ -49,22 +49,22 @@ export class AuthService {
       });
   }
 
-  deleteUser(userID : string) {
+  deleteUser(userID: string) {
     this.http.delete('http://localhost:4000/api/user/delete/' + userID)
-    .subscribe( response => {
-      window.alert("Successfully deleted your account");
-      console.log(response);
-    }, error => {
-      window.alert("There was an error deleting your account");
-    })
-}
+      .subscribe(response => {
+        window.alert("Successfully deleted your account");
+        console.log(response);
+      }, error => {
+        window.alert("There was an error deleting your account");
+      })
+  }
 
-  editUserInfo(userID : string, fname : string, lname : string, email : string) {
-    const authData : AuthData = {
-      fname : fname,
-      lname : lname,
-      email : email,
-      password : ''
+  editUserInfo(userID: string, fname: string, lname: string, email: string) {
+    const authData: AuthData = {
+      fname: fname,
+      lname: lname,
+      email: email,
+      password: ''
     };
     console.log(authData);
     this.http.put('http://localhost:4000/api/user/' + userID, authData)
@@ -73,9 +73,9 @@ export class AuthService {
       })
   }
 
-  getUserInfo(userID: string) {
-    console.log(userID);
-    this.http.get('http://localhost:4000/api/user/retrieve/' + userID)
+  getUserInfo(email: string) {
+    console.log(email);
+    this.http.get('http://localhost:4000/api/user/forgot/' + email)
       .subscribe(response => {
         let fetchedUser = response;
         sessionStorage.setItem('userInfo', JSON.stringify(fetchedUser));
@@ -106,6 +106,7 @@ export class AuthService {
           const expirationDate = new Date(now.getTime() + expiresInDuration * 1000);
           this.saveAuthData(token, expirationDate);
           this.getUserID(email);
+          this.getUserInfo(email);
           this.router.navigate(['/']);
         }
       }, error => {
@@ -153,6 +154,8 @@ export class AuthService {
     localStorage.removeItem('token');
     localStorage.removeItem('expiration');
     localStorage.removeItem('cart');
+    sessionStorage.removeItem('userID');
+    sessionStorage.removeItem('userInfo');
   }
 
   private getAuthData() {
@@ -168,38 +171,37 @@ export class AuthService {
   }
 
 
-  checkEmail(email : string)
-  {
-    const authData : AuthData = {
-      fname : '',
-      lname : '',
-      email : '',
-      password : '',
+  checkEmail(email: string) {
+    const authData: AuthData = {
+      fname: '',
+      lname: '',
+      email: '',
+      password: '',
     };
     this.http.get('http://localhost:4000/api/user/forgot/' + email)
-    .subscribe( response => {
-      // console.log(JSON.stringify(response));
-      this.http.put('http://localhost:4000/api/user/newPass/' + email, authData)
-      .subscribe( response => {
-        console.log("Generated Pass" + JSON.stringify(response));
-        window.alert("New Password: " + JSON.stringify(response));
+      .subscribe(response => {
+        // console.log(JSON.stringify(response));
+        this.http.put('http://localhost:4000/api/user/newPass/' + email, authData)
+          .subscribe(response => {
+            console.log("Generated Pass" + JSON.stringify(response));
+            window.alert("New Password: " + JSON.stringify(response));
+          })
+      }, error => {
+        // console.log("Invalid E-mail");
+        window.alert("Invalid E-mail");
       })
-    }, error => {
-      // console.log("Invalid E-mail");
-      window.alert("Invalid E-mail");
-    })
   }
 
-  checkPassword(userID : string, newPassword : string, oldPassword : string){
-    const authData : AuthData = {
-      fname : '',
-      lname : '',
-      email : '',
-      password : newPassword
+  checkPassword(userID: string, newPassword: string, oldPassword: string) {
+    const authData: AuthData = {
+      fname: '',
+      lname: '',
+      email: '',
+      password: newPassword
     };
     //console.log(authData.password);
     this.http.get('http://localhost:4000/api/user/check/' + userID + '/' + oldPassword)
-      .subscribe( response => {
+      .subscribe(response => {
         /*
         fetch('http://httpstat.us/401')
         .then(function() {
@@ -209,24 +211,24 @@ export class AuthService {
           return;
         })
         */
-        
+
         this.http.put('http://localhost:4000/api/user/password/' + userID, authData)
-        .subscribe( response => {
-          window.alert("Successful");
-          this.router.navigate(['']);
-          console.log(response);
-        })
+          .subscribe(response => {
+            window.alert("Successful");
+            this.router.navigate(['']);
+            console.log(response);
+          })
       }, error => {
         window.alert("Failed");
       })
   }
 
-  getUserID(email : string) {
+  getUserID(email: string) {
     this.http.get('http://localhost:4000/api/user/forgot/' + email)
-    .subscribe(response => {
-      let fetchedUser = JSON.stringify(response);
-      let userID = fetchedUser.split(',')[0].split(':')[1].split('\"')[1];
-      sessionStorage.setItem('userID', userID);
-    })
+      .subscribe(response => {
+        let fetchedUser = JSON.stringify(response);
+        let userID = fetchedUser.split(',')[0].split(':')[1].split('\"')[1];
+        sessionStorage.setItem('userID', userID);
+      })
   }
 }

@@ -11,14 +11,14 @@
     <td align="center">
       <a (click)="remove(item.id)">X</a>
     </td>
-    <td>{{item.itemName}}</td>
+    <td>{{item?.itemName}}</td>
     <img class="card-img-top" class="redjacket" src="assets/images/sweater.jpg" style="width: 50px; height:50px;">
-    <td>{{item.itemPrice | currency:'USD':true}}</td>
+    <td>{{item?.itemPrice | currency:'USD':true}}</td>
 
   </tr>
   <tr>
     <td colspan="3" align="right">Total</td>
-    <td>{{total | currency:'USD':true}}</td> 
+    <td>{{total | currency:'USD':true}}</td>
   </tr>
 </table>
 
