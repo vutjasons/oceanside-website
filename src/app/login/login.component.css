@@ -34,18 +34,10 @@ input{
 }
 .btn { 
   border-radius: 0;
-<<<<<<< HEAD
   background-color:black;
-=======
-  background-color:#ba0000;
->>>>>>> 11df8464a7a574e53195cb9427e6bf5a6ecd4938
   font:white;
 }
 a{
   float:left;
-<<<<<<< HEAD
   color: blue;
-=======
-  color:#ba0000;
->>>>>>> 11df8464a7a574e53195cb9427e6bf5a6ecd4938
 }

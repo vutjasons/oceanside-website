@@ -1,19 +1,11 @@
 
 /* Create two equal columns that floats next to each other */
 .column {
-<<<<<<< HEAD
   float: left;
   width: 50%;
   padding-left: 15px;
   padding-top: 25px;
 }
-=======
-    float: left;
-    width: 50%;
-    padding-left: 15px;
-    padding-top: 25px;
-  }
->>>>>>> 11df8464a7a574e53195cb9427e6bf5a6ecd4938
 
 input[type="number"]::-webkit-inner-spin-button {
   -webkit-appearance: none;
@@ -22,12 +14,6 @@ input[type="number"]::-webkit-inner-spin-button {
 div.two-col{
 width:50%;
 }
-<<<<<<< HEAD
-=======
-div.two-col{
-  width:50%;
-}
->>>>>>> 11df8464a7a574e53195cb9427e6bf5a6ecd4938
 input[type="text"] { 
 box-shadow: none;
 /* border-bottom: none; */
@@ -48,24 +34,6 @@ clear: both;
 font-weight: bold;
 padding-top: 4px;
 }
-<<<<<<< HEAD
-=======
-h1{
-  font-family: 'PT Sans Narrow';
-  font-size: 26px;
-  font-style: normal;
-  text-transform: none;
-  line-height: 1.5;
-  color: #333333;
-  display: block;
-  letter-spacing: 0px;
-  text-rendering: optimizeLegibility;
-  margin: 0 auto 15px;
-  clear: both;
-  font-weight: bold;
-  padding-top: 4px;
-}
->>>>>>> 11df8464a7a574e53195cb9427e6bf5a6ecd4938
 
 
 input::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
@@ -101,39 +69,8 @@ a.back{
 float:left;
 color:#ba0000;
 }
-<<<<<<< HEAD
 .btn{
 border-radius: 0;
 background-color: #ba0000;
 font:white;
-float:right;
 }
-=======
-div.list{
-  width:50%;
-  float:left;
-}
-table{
-  width:100%;
-  margin-bottom:1.5em;
-}
-img{
-  border-radius: 10px;
-}
-div.subtotal{
-  border-top:1px solid;
-  padding-top:1.5em;
-}
-.right{
-  float:right;
-}
-a.back{
-  float:left;
-  color:#ba0000;
-}
-.btn{
-  border-radius: 0;
-  background-color:#ba0000;
-  font:white;
-}
->>>>>>> 11df8464a7a574e53195cb9427e6bf5a6ecd4938
