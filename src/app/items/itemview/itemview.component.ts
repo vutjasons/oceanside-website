@@ -28,7 +28,8 @@ export class ItemviewComponent implements OnInit {
           itemPrice: itemData.itemPrice,
           itemSize: itemData.itemSize,
           itemStock: itemData.itemStock,
-          itemType: itemData.itemType
+          itemType: itemData.itemType,
+          itemImg: itemData.itemImg,
         };
       });
     });

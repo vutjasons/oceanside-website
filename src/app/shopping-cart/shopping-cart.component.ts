@@ -46,7 +46,8 @@ export class ShoppingCartComponent implements OnInit {
             itemPrice: itemData.itemPrice,
             itemSize: itemData.itemSize,
             itemStock: itemData.itemStock,
-            itemType: itemData.itemType
+            itemType: itemData.itemType,
+            itemImg: itemData.itemImg,
           };
           if (sessionStorage.getItem('cart') == null) {
             let cart: any = [];
@@ -77,12 +78,12 @@ export class ShoppingCartComponent implements OnInit {
         this.loadCart();
       }
     }));
-     let cart = JSON.parse(sessionStorage.getItem('cart'));
-     if(cart.length != null) {
-       if (cart.length == 0) {
-         (<HTMLInputElement>document.getElementById('cOut')).disabled = true;
-       }
-     }
+    //  let cart = JSON.parse(sessionStorage.getItem('cart'));
+    //  if(cart.length != null) {
+    //    if (cart.length == 0) {
+    //      (<HTMLInputElement>document.getElementById('cOut')).disabled = true;
+    //    }
+    //  }
   }
 
   loadCart(): void {
@@ -101,7 +102,8 @@ export class ShoppingCartComponent implements OnInit {
           itemPrice: item.itemPrice,
           itemSize: item.itemSize,
           itemStock: item.itemStock,
-          itemType: item.itemType
+          itemType: item.itemType,
+          itemImg: item.itemImg,
         });
         this.total += item.itemPrice;
       }

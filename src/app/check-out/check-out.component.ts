@@ -48,7 +48,8 @@ export class CheckOutComponent implements OnInit {
           itemPrice: item.itemPrice,
           itemSize: item.itemSize,
           itemStock: item.itemStock,
-          itemType: item.itemType
+          itemType: item.itemType,
+          itemImg: item.itemImg,
         });
         this.total += item.itemPrice;
       }
@@ -101,7 +102,7 @@ export class CheckOutComponent implements OnInit {
         for (let i = 0; i < this.items.length; i++) {
           var stock = this.items[i].itemStock - 1;
           console.log(this.items[i].id);
-          this.itemService.updateItem(this.items[i].id, this.items[i].itemName, this.items[i].itemSize, this.items[i].itemGender, this.items[i].itemType, this.items[i].itemPrice, stock);
+          this.itemService.updateItem(this.items[i].id, this.items[i].itemName, this.items[i].itemSize, this.items[i].itemGender, this.items[i].itemType, this.items[i].itemPrice, stock, this.items[i].itemImg);
         }
 
         this.orderService.storeOrder(order);

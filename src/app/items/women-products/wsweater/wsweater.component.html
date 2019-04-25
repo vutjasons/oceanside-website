@@ -16,11 +16,9 @@
     <div class="col">
       <div class="row">
         <ng-container *ngFor="let item of sweaters">
-          <div class="col">
             <div (click)="onClick(item.id)">
               <app-itemdisplay [item]="item"></app-itemdisplay>
             </div>
-          </div>
         </ng-container>
       </div>
     </div>

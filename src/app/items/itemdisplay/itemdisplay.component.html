@@ -1,9 +1,9 @@
 <div class="col">
   <div>
-    <a>
-      <img class="card-img-top" class="redjacket" src="assets/images/sweater.jpg" style="width: 150px; height:150px;">
-    </a>
     <div class="card-body">
+        <a>
+            <img class="card-img-top" class="redjacket" src="{{ item?.itemImg }}" style="width: 150px; height:150px;">
+          </a>
       <h4 class="card-title"> {{item?.itemName}}</h4>
       <p class="card-text">{{item?.itemPrice | currency:'USD':true}}</p>
     </div>

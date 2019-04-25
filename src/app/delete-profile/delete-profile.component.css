@@ -1,0 +1,13 @@
+.btn{
+    border-radius: 0;
+    background-color: black;
+    font:white;
+    }
+button{
+    font:3em;
+    margin:10px;
+}
+.container{
+    text-align:center;
+}
+

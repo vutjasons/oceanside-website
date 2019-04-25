@@ -6,7 +6,8 @@ const itemSchema = mongoose.Schema({
   itemGender: { type: String},
   itemType: { type: String},
   itemPrice: { type: Number },
-  itemStock: { type: Number }
+  itemStock: { type: Number },
+  itemImg: { type: String },
 });
 
 

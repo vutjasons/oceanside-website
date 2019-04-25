@@ -38,6 +38,7 @@ export class ItemsService {
               itemType: item.itemTime,
               itemPrice: item.itemPrice,
               itemStock: item.itemStock,
+              itemImg: item.itemImg,
               id: item._id
             };
           });
@@ -66,6 +67,7 @@ export class ItemsService {
               itemType: item.itemType,
               itemPrice: item.itemPrice,
               itemStock: item.itemStock,
+              itemImg: item.itemImg,
               id: item._id
             };
           });
@@ -92,6 +94,7 @@ export class ItemsService {
               itemType: item.itemType,
               itemPrice: item.itemPrice,
               itemStock: item.itemStock,
+              itemImg: item.itemImg,
               id: item._id
             };
           });
@@ -118,6 +121,7 @@ export class ItemsService {
               itemType: item.itemType,
               itemPrice: item.itemPrice,
               itemStock: item.itemStock,
+              itemImg: item.itemImg,
               id: item._id
             };
           });
@@ -144,6 +148,7 @@ export class ItemsService {
               itemType: item.itemType,
               itemPrice: item.itemPrice,
               itemStock: item.itemStock,
+              itemImg: item.itemImg,
               id: item._id
             };
           });
@@ -170,6 +175,7 @@ export class ItemsService {
               itemType: item.itemType,
               itemPrice: item.itemPrice,
               itemStock: item.itemStock,
+              itemImg: item.itemImg,
               id: item._id
             };
           });
@@ -196,6 +202,7 @@ export class ItemsService {
               itemType: item.itemType,
               itemPrice: item.itemPrice,
               itemStock: item.itemStock,
+              itemImg: item.itemImg,
               id: item._id
             };
           });
@@ -245,6 +252,7 @@ export class ItemsService {
       itemType: string;
       itemPrice: number;
       itemStock: number;
+      itemImg: string;
     }>('http://localhost:4000/api/items/' + id);
   }
 
@@ -254,7 +262,8 @@ export class ItemsService {
     itemGender: string,
     itemType: string,
     itemPrice: number,
-    itemStock: number
+    itemStock: number,
+    itemImg: string
   ) {
     const item: Item = {
       id: null,
@@ -263,7 +272,8 @@ export class ItemsService {
       itemGender: itemGender,
       itemType: itemType,
       itemPrice: itemPrice,
-      itemStock: itemStock
+      itemStock: itemStock,
+      itemImg: itemImg,
     };
     this.http
       .post<{ message: string; itemId: string }>(
@@ -286,7 +296,8 @@ export class ItemsService {
     itemGender: string,
     itemType: string,
     itemPrice: number,
-    itemStock: number
+    itemStock: number,
+    itemImg: string,
   ) {
     const item: Item = {
       id: id,
@@ -295,7 +306,8 @@ export class ItemsService {
       itemGender: itemGender,
       itemType: itemType,
       itemPrice: itemPrice,
-      itemStock: itemStock
+      itemStock: itemStock,
+      itemImg: itemImg
     };
 
     console.log(item);

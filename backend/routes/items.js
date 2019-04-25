@@ -12,7 +12,8 @@ router.post("", (req, res, next) => {
     itemGender: req.body.itemGender,
     itemType: req.body.itemType,
     itemPrice: req.body.itemPrice,
-    itemStock: req.body.itemStock
+    itemStock: req.body.itemStock,
+    itemImg: req.body.itemImg
   });
   item.save().then(createdItem => {
     res.status(201).json({
@@ -31,7 +32,8 @@ router.put("/:id", (req, res, next) => {
     itemGender: req.body.itemGender,
     itemType: req.body.itemType,
     itemPrice: req.body.itemPrice,
-    itemStock: req.body.itemStock
+    itemStock: req.body.itemStock,
+    itemImg: req.body.itemImg,
   });
   Item.updateOne({ _id: req.params.id }, item).then(result => {
     res.status(200).json({ message: "Update successful!" });

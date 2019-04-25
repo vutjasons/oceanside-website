@@ -6,4 +6,5 @@ export interface Item {
   itemType: string;
   itemPrice: number;
   itemStock: number;
+  itemImg: string;
 }
