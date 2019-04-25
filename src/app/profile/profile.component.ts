@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { getDefaultService } from 'selenium-webdriver/edge';
 import { Token } from '@angular/compiler/src/ml_parser/lexer';
@@ -11,29 +11,24 @@ import { identifierModuleUrl } from '@angular/compiler';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-  private token : string;
-  private decoded : Token;
   private userInfo : string[];
   private fname : string;
   private lname : string;
   private email : string;
-  private id : string;
 
   constructor(private authService: AuthService) {
-    this.authService.getUserInfo(sessionStorage.getItem('userID'));
+    // let id = this.authService.getUserInfo(sessionStorage.getItem('userID'));
+    // if (sessionStorage.getItem('userInfo') == null)
+    // {
+    //   window.alert('Undefined');
+    // }
   }
 
   ngOnInit() {
-    this.token = sessionStorage.getItem('userInfo');
-    this.userInfo = JSON.stringify(this.token).split(",");
+    this.userInfo = sessionStorage.getItem('userInfo').split(",");
+    console.log(this.userInfo);
     this.email = this.userInfo[3].split(":")[1].split("\"")[1].split("\\")[0];
     this.lname = this.userInfo[2].split(":")[1].split("\"")[1].split("\\")[0];
     this.fname = this.userInfo[1].split(":")[1].split("\"")[1].split("\\")[0];
-  }
-
-  parseJWT(token) {
-    var base64Url = token.split('.')[1];
-    var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
-    return JSON.parse(atob(base64));
   }
 }
