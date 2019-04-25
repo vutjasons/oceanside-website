@@ -1,6 +1,4 @@
-<h2>
-  Payment Information
-</h2>
+<h1 style=" height: 47px; border-bottom: 1px solid black;">Payment Information</h1>
 
 <form (submit)="onCheckOut(checkoutForm)" #checkoutForm="ngForm">
   <div class="two-col">
@@ -86,6 +84,9 @@
          onwheel = "this.blur()" placeholder="Zipcode" #zipcodeInput="ngModel" required>
         <mat-error *ngIf="zipcodeInput.invalid">Please enter a valid zipcode</mat-error>
       </mat-form-field>
+      <a class="back" routerLink="/shopping-cart">
+        < Return to Cart
+      </a>
     </div>
 
     <div class="column">
@@ -107,10 +108,39 @@
           <input matInput name="cvc" ngModel type="text" placeholder="CVC" #cvcInput="ngModel" required>
           <mat-error *ngIf="cvcInput.invalid">Please enter a valid CVC</mat-error>
         </mat-form-field>
-
-      <p>
-        <button mat-raised-button color="primary" type="submit">Check Out</button>
-      </p>
     </div>
   </div>
 </form>
+<div class="list">
+    <table>
+        <tr *ngFor="let item of items">
+          <td class="image">
+            <img class="card-img-top" class="redjacket" src="assets/images/sweater.jpg" style="width: 5em; height:5em;">
+          </td>
+          <td class="ItemVariables" valign="top">
+            <div class="divvariables">
+              <h3>
+                <a style="font-size: 1em;font-weight:bold;">
+                  {{item?.itemName}}
+                </a>
+              </h3>
+
+            </div>
+          </td>
+          <td class="price" align="right">
+              {{item?.itemPrice | currency:'USD':true}}
+          </td>
+        </tr>
+      </table>
+      <div class="subtotal">
+          <p class="subtotalprice">
+            Subtotal
+            <span class="right">
+              {{total | currency:'USD':true}}
+            </span>
+          </p>
+          <button mat-raised-button color="primary" type="submit" (click) = "onCheckOut(checkoutForm)" class = "btn btn-primary">Check Out</button>
+
+        </div>
+      
+</div>

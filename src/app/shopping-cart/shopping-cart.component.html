@@ -1,27 +1,38 @@
-<h3>Cart Info</h3>
-<table border="1">
-  <tr>
-    <th>Remove</th>
-    <th>Name</th>
-    <th>Photo</th>
-    <th>Price</th>
-
-  </tr>
-  <tr *ngFor="let item of items" align = "center">
-    <td align="center">
-      <a (click)="remove(item.id)">X</a>
+<h1 style=" height: 47px; border-bottom: 1px solid black;">Shopping Cart</h1>
+<table>
+  <tr *ngFor="let item of items">
+    <td class="image">
+      <img class="card-img-top" class="redjacket" src="assets/images/sweater.jpg" style="width: 275px; height:325px;">
     </td>
-    <td>{{item?.itemName}}</td>
-    <img class="card-img-top" class="redjacket" src="assets/images/sweater.jpg" style="width: 50px; height:50px;">
-    <td>{{item?.itemPrice | currency:'USD':true}}</td>
-
-  </tr>
-  <tr>
-    <td colspan="3" align="right">Total</td>
-    <td>{{total | currency:'USD':true}}</td>
+    <td class="ItemVariables" valign="top">
+      <div class="divvariables">
+        <h3>
+          <a style="font-size: 20px;font-weight:bold;">
+            {{item?.itemName}}
+          </a>
+        </h3>
+        <p class="price" >
+          {{item?.itemPrice | currency:'USD':true}}
+        </p>
+        <p>
+           <button id = "cOut" type = "button" (click)="remove(item.id)" mat-raised-button color="primary" class = "btn btn-primary btn block">Remove</button>
+        </p>
+      </div>
+    </td>
   </tr>
 </table>
 
-<div>
-  <button id = "cOut" type = "button" (click) = "cartCheck()" mat-raised-button color="primary" class = "btn btn-primary">Check Out</button>
+<div class="checkout">
+  <p class="subtotal">
+    Subtotal
+    <span class="right">
+      {{total | currency:'USD':true}}
+    </span>
+  </p>
+  <p>Orders will be processed in USD.</p>
+  <button id = "cOut" type = "button" (click) = "cartCheck()">Check Out</button>
+  <!-- <button id = "cOut" type = "button" (click) = "cartCheck()" mat-raised-button color="primary" class = "btn btn-primary btn-block">Check Out</button> -->
+  <div class="cont">
+      <a  routerLink="/sales" style="color:#888888;">Continue Shopping</a>
+  </div>
 </div>

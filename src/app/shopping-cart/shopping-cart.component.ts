@@ -77,12 +77,12 @@ export class ShoppingCartComponent implements OnInit {
         this.loadCart();
       }
     }));
-     let cart = JSON.parse(sessionStorage.getItem('cart'));
-     if(cart.length != null) {
-       if (cart.length == 0) {
-         (<HTMLInputElement>document.getElementById('cOut')).disabled = true;
-       }
-     }
+    //  let cart = JSON.parse(sessionStorage.getItem('cart'));
+    //  if(cart.length != null) {
+    //    if (cart.length == 0) {
+    //      (<HTMLInputElement>document.getElementById('cOut')).disabled = true;
+    //    }
+    //  }
   }
 
   loadCart(): void {

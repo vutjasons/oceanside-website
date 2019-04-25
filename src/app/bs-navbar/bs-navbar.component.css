@@ -3,5 +3,7 @@
 }
 
 .navbar.navbar-expand-lg.navbar-dark li a {
-  color: black;
+  color: #7c7c7c;
+  font-family: fjalla One;
+  text-rendering: optimizeLegibility;
 }
