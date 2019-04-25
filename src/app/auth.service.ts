@@ -73,9 +73,9 @@ export class AuthService {
       })
   }
 
-  getUserInfo(userID: string) {
-    console.log(userID);
-    this.http.get('http://localhost:4000/api/user/retrieve/' + userID)
+  getUserInfo(email: string) {
+    console.log(email);
+    this.http.get('http://localhost:4000/api/user/forgot/' + email)
       .subscribe(response => {
         let fetchedUser = response;
         sessionStorage.setItem('userInfo', JSON.stringify(fetchedUser));
@@ -106,6 +106,7 @@ export class AuthService {
           const expirationDate = new Date(now.getTime() + expiresInDuration * 1000);
           this.saveAuthData(token, expirationDate);
           this.getUserID(email);
+          this.getUserInfo(email);
           this.router.navigate(['/']);
         }
       }, error => {
@@ -153,6 +154,8 @@ export class AuthService {
     localStorage.removeItem('token');
     localStorage.removeItem('expiration');
     localStorage.removeItem('cart');
+    sessionStorage.removeItem('userID');
+    sessionStorage.removeItem('userInfo');
   }
 
   private getAuthData() {

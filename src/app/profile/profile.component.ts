@@ -17,11 +17,16 @@ export class ProfileComponent implements OnInit {
   private email : string;
 
   constructor(private authService: AuthService) {
-    this.authService.getUserInfo(sessionStorage.getItem('userID'));
+    let id = this.authService.getUserInfo(sessionStorage.getItem('userID'));
+    if (sessionStorage.getItem('userInfo') == null)
+    {
+      window.alert('Undefined');
+    }
   }
 
   ngOnInit() {
     this.userInfo = sessionStorage.getItem('userInfo').split(",");
+    console.log(this.userInfo);
     this.email = this.userInfo[3].split(":")[1].split("\"")[1].split("\\")[0];
     this.lname = this.userInfo[2].split(":")[1].split("\"")[1].split("\\")[0];
     this.fname = this.userInfo[1].split(":")[1].split("\"")[1].split("\\")[0];
