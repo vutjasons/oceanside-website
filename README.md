@@ -1,6 +1,6 @@
 # OceansideWeb
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.0.
+E-Commerce Website designed to provide customers with affordable trendy clothing.
 
 ## Development server
 
